@@ -206,7 +206,7 @@ if (currentquestionIndex > 0) {
                                       totalAttempt: widget.quizset.questions.length,
                                       totalQuestion:   widget.quizset.questions.length,
                                       correctAnswer: totalCorrect,
-                                      score: totalCorrect,
+                                      score: (totalCorrect*10) ,
                                       quizSet: widget.quizset,
 
 
