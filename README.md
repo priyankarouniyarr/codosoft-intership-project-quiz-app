@@ -1,16 +1,14 @@
-# quiz_app
+# Quiz App 
+Quiz App is a Flutter-based project designed for an engaging quiz experience. Key features include:
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Interactive Interface:
+Navigate questions easily, select answers, and submit responses.
+# Offline Functionality: 
+Uses local data storage for offline access and efficient data management.
+# Timer: 
+Countdown from 60 seconds adds a challenge; prompts users when time is up.
+# Results Page:
+Displays total correct answers and score with detailed feedback.
+# Custom Design:
+Features a gradient background and modern UI elements for an attractive user experience.
+This app highlights Flutter's capabilities in creating interactive and user-friendly mobile applications.
