@@ -1,7 +1,7 @@
 import 'package:quiz_app/models/models.dart';
 
 class Data {
-  static List<Category> categories = [
+  final List<Category> categories = [
     Category(
       name: 'Artifical Intelligence',
       image: 'images/artifical_intelligence.png',
@@ -11,7 +11,7 @@ class Data {
           questions: [
             Question(
                 '1. What is Artificial Intelligence?',
-                [
+               [
                   'A) Programming',
                   'B) Machine learning',
                   'C) Simulation of human intelligence',

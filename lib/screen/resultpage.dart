@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:quiz_app/models/models.dart';
 import 'package:quiz_app/screen/homepage.dart';
 import 'package:quiz_app/screen/quizpage.dart';
 
 class ResultPage extends StatelessWidget {
   final int totalQuestion;
-  final int score;
+  final double score;
   final int correctAnswer;
   final QuizSet quizSet;
   final int totalAttempt;
@@ -21,16 +22,28 @@ class ResultPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     String result;
+
     if (score < 25) {
-      result = "Oops! You Failed! \n   Your Score \n      $score/$totalQuestion";
+      result = "\t\tOops! You Failed!\n"
+               "\tYour Score: ${score.toStringAsFixed(0)}%\n"
+               "Total Questions: $totalQuestion\n"
+               "Total Correct: $correctAnswer";
     } else if (score < 50) {
-      result = "Keep it up! \n   Your Score \n     $score/$totalQuestion";
+      result = "\t\tKeep it up!\n"
+               "\tYour Score: ${score.toStringAsFixed(0)}%\n"
+               "Total Questions: $totalQuestion\n"
+               "Total Correct: $correctAnswer";
     } else if (score < 80) {
-      result = "Excellent! \n   Your Score \n   $score/$totalQuestion";
+      result = "\t\tExcellent!\n"
+               "\tYour Score: ${score.toStringAsFixed(0)}%\n"
+               "Total Questions: $totalQuestion\n"
+               "Total Correct: $correctAnswer";
     } else {
-      result = "Well done! \n   Your Score \n   $score/$totalQuestion";
+      result = "\t\t\tWell done!\n"
+               "\tYour Score: ${score.toStringAsFixed(0)}%\n"
+               "Total Questions: $totalQuestion\n"
+               "Total Correct: $correctAnswer";
     }
 
     return Scaffold(
@@ -55,37 +68,21 @@ class ResultPage extends StatelessWidget {
             children: [
               SizedBox(height: 40),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0),
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 25,
-                      ),
+                padding: EdgeInsets.symmetric(horizontal:20.0),
+                child: Center(
+                  child: Text(
+                    "Quiz Score",
+                    style: TextStyle(
+                      fontSize: 50,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
                     ),
-                    Flexible(
-                      child: Text(
-                        "Quiz Score",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height/6,
-            ),
+              SizedBox(height: MediaQuery.of(context).size.height / 6),
               Container(
-                height:MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.all(25),
                 decoration: BoxDecoration(
@@ -95,104 +92,116 @@ class ResultPage extends StatelessWidget {
                   ),
                   color: Colors.black.withOpacity(0.5),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                child: Stack(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top:50.0),
-                      child: Center(
-                        child: Text(
-                          result,
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                    Lottie.asset(
+                      'animations/celebration.json',
+                      height: MediaQuery.of(context).size.width ,
+                      width: MediaQuery.of(context).size.width ,
                     ),
-                    SizedBox(height: 100,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                  
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                          GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Homepage()),);},
-                            child: Container(
-                              padding:EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-                              decoration: BoxDecoration(
-                                 gradient: LinearGradient(
-                          colors: [
-                            Colors.blueAccent,
-                            Color.fromARGB(255, 0, 183, 255),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.blueAccent.withOpacity(0.4),
-                            blurRadius: 10,
-                            offset: Offset(0, 5),
-                          ),
-                        ],
-
+                        Padding(
+                          padding: const EdgeInsets.only(top: 50.0),
+                          child: Center(
+                            child: Text(
+                              result,
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
                               ),
-                              child:Center(
-                                child: Text('Cancel',style:TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                )),
-                              )
-
-                            )
-                      ),
-
-                      SizedBox(
-                        width: 100,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Quizpage(quizset: quizSet,)),);},
-                            child: Container(
-                              padding:EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-                              decoration: BoxDecoration(
-                                 gradient: LinearGradient(
-                          colors: [
-                            Colors.blueAccent,
-                            Color.fromARGB(255, 0, 183, 255),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.blueAccent.withOpacity(0.4),
-                            blurRadius: 10,
-                            offset: Offset(0, 5),
+                            ),
                           ),
-                        ],
-
+                        ),
+                        SizedBox(height: 100),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Homepage()),
+                                );
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Colors.blueAccent,
+                                      Color.fromARGB(255, 0, 183, 255),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.blueAccent.withOpacity(0.4),
+                                      blurRadius: 10,
+                                      offset: Offset(0, 5),
+                                    ),
+                                  ],
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Cancel',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
                               ),
-                              child:Center(
-                                child: Text('Restart',style:TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                )),
-                              )
-
-                            )
-                      )
-                    ],)
+                            ),
+                            SizedBox(width: 100),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Quizpage(quizset: quizSet)),
+                                );
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Colors.blueAccent,
+                                      Color.fromARGB(255, 0, 183, 255),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.blueAccent.withOpacity(0.4),
+                                      blurRadius: 10,
+                                      offset: Offset(0, 5),
+                                    ),
+                                  ],
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Restart',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),

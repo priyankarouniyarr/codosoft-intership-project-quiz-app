@@ -3,8 +3,8 @@ import 'package:quiz_app/data/data.dart';
 import 'package:quiz_app/screen/categories.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({super.key});
-
+  
+Data data =Data();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +54,7 @@ class Homepage extends StatelessWidget {
               child: GridView.builder(
                 //creates a scrollable grid of items dynamically
             
-                itemCount: Data.categories.length,
+                itemCount: data.categories.length,
                 padding: EdgeInsets.all(15),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   //grid layout
@@ -65,7 +65,7 @@ class Homepage extends StatelessWidget {
                   mainAxisSpacing: 20,
                 ),
                 itemBuilder: (context, index) {
-                  final category = Data.categories[index];
+                  final category = data.categories[index];
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(

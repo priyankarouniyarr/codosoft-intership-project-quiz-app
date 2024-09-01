@@ -9,8 +9,9 @@ class Category {
 class QuizSet {
   final String name;
   final List<Question> questions;
+  
 
-  QuizSet({required this.name, required this.questions});
+  QuizSet({required this.name, required this.questions,});
 }
 
 class Question {

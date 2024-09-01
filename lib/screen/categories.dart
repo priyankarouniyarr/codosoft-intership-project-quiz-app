@@ -5,7 +5,7 @@ import 'package:quiz_app/screen/quizpage.dart';
 
 class CategoryPage extends StatelessWidget {
   final Category category;
-  const CategoryPage({super.key,required this.category});
+  const CategoryPage({required this.category});
     @override
   Widget build(BuildContext context) {
     return Scaffold(
