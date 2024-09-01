@@ -80,8 +80,7 @@ class _WelcomescreenState extends State<Welcomescreen>
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height / 2.5,
-                  padding:
-                      EdgeInsets.symmetric(vertical: 40, horizontal: 30),
+                  padding: EdgeInsets.symmetric(vertical: 40, horizontal: 30),
                   decoration: BoxDecoration(
                     color: Color.fromARGB(180, 43, 17, 78),
                     borderRadius: BorderRadius.only(
@@ -132,8 +131,7 @@ class _WelcomescreenState extends State<Welcomescreen>
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => Homepage()),
+                            MaterialPageRoute(builder: (context) => Homepage()),
                           );
                         },
                         child: Container(

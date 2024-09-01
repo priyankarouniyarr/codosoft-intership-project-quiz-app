@@ -3,8 +3,7 @@ import 'package:quiz_app/data/data.dart';
 import 'package:quiz_app/screen/categories.dart';
 
 class Homepage extends StatelessWidget {
-  
-Data data =Data();
+  Data data = Data();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +24,10 @@ Data data =Data();
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           const  SizedBox(height: 40),
-          const  Padding(
+            const SizedBox(height: 40),
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.0),
-              child:  Text(
+              child: Text(
                 'Challenge yourself!',
                 style: TextStyle(
                   fontSize: 30,
@@ -37,8 +36,8 @@ Data data =Data();
                 ),
               ),
             ),
-        const    SizedBox(height: 5),
-           Padding(
+            const SizedBox(height: 5),
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.0),
               child: Text(
                 'See how prepared you are!',
@@ -53,7 +52,7 @@ Data data =Data();
             Expanded(
               child: GridView.builder(
                 //creates a scrollable grid of items dynamically
-            
+
                 itemCount: data.categories.length,
                 padding: EdgeInsets.all(15),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

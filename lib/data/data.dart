@@ -11,7 +11,7 @@ class Data {
           questions: [
             Question(
                 '1. What is Artificial Intelligence?',
-               [
+                [
                   'A) Programming',
                   'B) Machine learning',
                   'C) Simulation of human intelligence',
@@ -2120,7 +2120,7 @@ class Data {
                   'C)Pink Floyd ',
                   'D) David Bowie '
                 ],
-                2//right answerr
+                2 //right answerr
                 ),
             Question(
                 '10. In which film did Tilda Swinton play the character of "The White Witch"?',

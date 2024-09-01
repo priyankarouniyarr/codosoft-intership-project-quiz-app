@@ -23,7 +23,8 @@ class _QuizpageState extends State<Quizpage> {
   void initState() {
     super.initState();
     startTimer();
-    selectedIndexanswer = List<int?>.filled(widget.quizset.questions.length, null);
+    selectedIndexanswer =
+        List<int?>.filled(widget.quizset.questions.length, null);
   }
 
   @override
@@ -106,7 +107,8 @@ class _QuizpageState extends State<Quizpage> {
     } else {
       int totalCorrect = 0;
       for (int i = 0; i < widget.quizset.questions.length; i++) {
-        if (selectedIndexanswer[i] == widget.quizset.questions[i].selectedIndex) {
+        if (selectedIndexanswer[i] ==
+            widget.quizset.questions[i].selectedIndex) {
           totalCorrect++;
         }
       }
@@ -128,10 +130,12 @@ class _QuizpageState extends State<Quizpage> {
 
   @override
   Widget build(BuildContext context) {
-    final Question currentQuestion = widget.quizset.questions[currentquestionIndex];
+    final Question currentQuestion =
+        widget.quizset.questions[currentquestionIndex];
     bool isAnswerSelected = selectedIndexanswer[currentquestionIndex] != null;
-    bool isQuestionEditable = currentquestionIndex == selectedIndexanswer.length - 1 ||
-        selectedIndexanswer[currentquestionIndex] == null;
+    bool isQuestionEditable =
+        currentquestionIndex == selectedIndexanswer.length - 1 ||
+            selectedIndexanswer[currentquestionIndex] == null;
 
     return Scaffold(
       body: Container(
@@ -249,32 +253,39 @@ class _QuizpageState extends State<Quizpage> {
                         onTap: isQuestionEditable
                             ? () {
                                 setState(() {
-                                  selectedIndexanswer[currentquestionIndex] = index;
+                                  selectedIndexanswer[currentquestionIndex] =
+                                      index;
                                 });
                               }
                             : null,
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 5),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 15, horizontal: 5),
                           margin: EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                            color: selectedIndexanswer[currentquestionIndex] == index
+                            color: selectedIndexanswer[currentquestionIndex] ==
+                                    index
                                 ? const Color.fromARGB(255, 163, 204, 204)
                                 : Colors.black.withOpacity(0.6),
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
-                                color: selectedIndexanswer[currentquestionIndex] == index
-                                    ? Colors.indigoAccent
-                                    : Colors.grey,
+                                color:
+                                    selectedIndexanswer[currentquestionIndex] ==
+                                            index
+                                        ? Colors.indigoAccent
+                                        : Colors.grey,
                                 width: 2),
                           ),
                           child: Text(
                             option,
                             style: TextStyle(
                               fontSize: 18,
-                              color: selectedIndexanswer[currentquestionIndex] == index
-                                  ? const Color.fromARGB(255, 39, 83, 160)
-                                  : Colors.white,
+                              color:
+                                  selectedIndexanswer[currentquestionIndex] ==
+                                          index
+                                      ? const Color.fromARGB(255, 39, 83, 160)
+                                      : Colors.white,
                               fontWeight: FontWeight.w800,
                             ),
                             textAlign: TextAlign.left,
@@ -317,12 +328,15 @@ class _QuizpageState extends State<Quizpage> {
                               width: 100,
                               padding: EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                color: isAnswerSelected ? Colors.blue : Colors.grey,
+                                color: isAnswerSelected
+                                    ? Colors.blue
+                                    : Colors.grey,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Center(
                                 child: Text(
-                                  currentquestionIndex == widget.quizset.questions.length - 1
+                                  currentquestionIndex ==
+                                          widget.quizset.questions.length - 1
                                       ? "Submit"
                                       : "Next",
                                   style: TextStyle(

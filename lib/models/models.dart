@@ -3,15 +3,20 @@ class Category {
   final String image;
   final List<QuizSet> quizquestionsets;
 
-  Category({required this.name, required this.image, required this.quizquestionsets});
+  Category(
+      {required this.name,
+      required this.image,
+      required this.quizquestionsets});
 }
 
 class QuizSet {
   final String name;
   final List<Question> questions;
-  
 
-  QuizSet({required this.name, required this.questions,});
+  QuizSet({
+    required this.name,
+    required this.questions,
+  });
 }
 
 class Question {

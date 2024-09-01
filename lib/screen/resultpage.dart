@@ -26,24 +26,24 @@ class ResultPage extends StatelessWidget {
 
     if (score < 25) {
       result = "\t\tOops! You Failed!\n"
-               "\tYour Score: ${score.toStringAsFixed(0)}%\n"
-               "Total Questions: $totalQuestion\n"
-               "Total Correct: $correctAnswer";
+          "\tYour Score: ${score.toStringAsFixed(0)}%\n"
+          "Total Questions: $totalQuestion\n"
+          "Total Correct: $correctAnswer";
     } else if (score < 50) {
       result = "\t\tKeep it up!\n"
-               "\tYour Score: ${score.toStringAsFixed(0)}%\n"
-               "Total Questions: $totalQuestion\n"
-               "Total Correct: $correctAnswer";
+          "\tYour Score: ${score.toStringAsFixed(0)}%\n"
+          "Total Questions: $totalQuestion\n"
+          "Total Correct: $correctAnswer";
     } else if (score < 80) {
       result = "\t\tExcellent!\n"
-               "\tYour Score: ${score.toStringAsFixed(0)}%\n"
-               "Total Questions: $totalQuestion\n"
-               "Total Correct: $correctAnswer";
+          "\tYour Score: ${score.toStringAsFixed(0)}%\n"
+          "Total Questions: $totalQuestion\n"
+          "Total Correct: $correctAnswer";
     } else {
       result = "\t\t\tWell done!\n"
-               "\tYour Score: ${score.toStringAsFixed(0)}%\n"
-               "Total Questions: $totalQuestion\n"
-               "Total Correct: $correctAnswer";
+          "\tYour Score: ${score.toStringAsFixed(0)}%\n"
+          "Total Questions: $totalQuestion\n"
+          "Total Correct: $correctAnswer";
     }
 
     return Scaffold(
@@ -68,7 +68,7 @@ class ResultPage extends StatelessWidget {
             children: [
               SizedBox(height: 40),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal:20.0),
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Center(
                   child: Text(
                     "Quiz Score",
@@ -96,8 +96,8 @@ class ResultPage extends StatelessWidget {
                   children: [
                     Lottie.asset(
                       'animations/celebration.json',
-                      height: MediaQuery.of(context).size.width ,
-                      width: MediaQuery.of(context).size.width ,
+                      height: MediaQuery.of(context).size.width,
+                      width: MediaQuery.of(context).size.width,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -123,11 +123,13 @@ class ResultPage extends StatelessWidget {
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => Homepage()),
+                                  MaterialPageRoute(
+                                      builder: (context) => Homepage()),
                                 );
                               },
                               child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
@@ -163,11 +165,14 @@ class ResultPage extends StatelessWidget {
                               onTap: () {
                                 Navigator.pushReplacement(
                                   context,
-                                  MaterialPageRoute(builder: (context) => Quizpage(quizset: quizSet)),
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          Quizpage(quizset: quizSet)),
                                 );
                               },
                               child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
