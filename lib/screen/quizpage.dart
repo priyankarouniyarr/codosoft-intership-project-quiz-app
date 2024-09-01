@@ -22,15 +22,17 @@ class _QuizpageState extends State<Quizpage> {
   @override
   void initState() {
     super.initState();
-    starttimer();
-    selectedIndexanswer =
-        List<int?>.filled(widget.quizset.questions.length, null);
+    startTimer();
+    selectedIndexanswer = List<int?>.filled(widget.quizset.questions.length, null);
   }
 
   @override
- 
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 
-  void starttimer() {
+  void startTimer() {
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
         if (seconds > 0) {
@@ -42,12 +44,6 @@ class _QuizpageState extends State<Quizpage> {
       });
     });
   }
-
-   void dispose() {
-    timer?.cancel();
-    super.dispose();
-  }
-
 
   void showTimeUpScreen() {
     showDialog(
@@ -79,9 +75,7 @@ class _QuizpageState extends State<Quizpage> {
               ),
               child: Text(
                 'Restart',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ),
@@ -106,15 +100,37 @@ class _QuizpageState extends State<Quizpage> {
     });
   }
 
+  void onSubmit() {
+    if (currentquestionIndex < widget.quizset.questions.length - 1) {
+      nextQuestion();
+    } else {
+      int totalCorrect = 0;
+      for (int i = 0; i < widget.quizset.questions.length; i++) {
+        if (selectedIndexanswer[i] == widget.quizset.questions[i].selectedIndex) {
+          totalCorrect++;
+        }
+      }
+      timer?.cancel(); // Cancel the timer
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ResultPage(
+            totalAttempt: widget.quizset.questions.length,
+            totalQuestion: widget.quizset.questions.length,
+            correctAnswer: totalCorrect,
+            score: (totalCorrect / widget.quizset.questions.length) * 100,
+            quizSet: widget.quizset,
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Question currentQuestion =
-        widget.quizset.questions[currentquestionIndex];
-
-    bool isAnswerSelected =
-        selectedIndexanswer[currentquestionIndex] != null;
-
-    bool isquestioneditable = currentquestionIndex == selectedIndexanswer.length - 1 ||
+    final Question currentQuestion = widget.quizset.questions[currentquestionIndex];
+    bool isAnswerSelected = selectedIndexanswer[currentquestionIndex] != null;
+    bool isQuestionEditable = currentquestionIndex == selectedIndexanswer.length - 1 ||
         selectedIndexanswer[currentquestionIndex] == null;
 
     return Scaffold(
@@ -225,36 +241,29 @@ class _QuizpageState extends State<Quizpage> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 10),
                     ...currentQuestion.options.asMap().entries.map((entry) {
                       final index = entry.key;
                       final option = entry.value;
                       return GestureDetector(
-                        onTap: isquestioneditable
+                        onTap: isQuestionEditable
                             ? () {
                                 setState(() {
-                                  selectedIndexanswer[currentquestionIndex] =
-                                      index;
+                                  selectedIndexanswer[currentquestionIndex] = index;
                                 });
                               }
                             : null,
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 15, horizontal: 5),
+                          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 5),
                           margin: EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                            color: selectedIndexanswer[currentquestionIndex] ==
-                                    index
+                            color: selectedIndexanswer[currentquestionIndex] == index
                                 ? const Color.fromARGB(255, 163, 204, 204)
                                 : Colors.black.withOpacity(0.6),
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
-                                color: selectedIndexanswer[
-                                            currentquestionIndex] ==
-                                        index
+                                color: selectedIndexanswer[currentquestionIndex] == index
                                     ? Colors.indigoAccent
                                     : Colors.grey,
                                 width: 2),
@@ -263,9 +272,7 @@ class _QuizpageState extends State<Quizpage> {
                             option,
                             style: TextStyle(
                               fontSize: 18,
-                              color: selectedIndexanswer[
-                                          currentquestionIndex] ==
-                                      index
+                              color: selectedIndexanswer[currentquestionIndex] == index
                                   ? const Color.fromARGB(255, 39, 83, 160)
                                   : Colors.white,
                               fontWeight: FontWeight.w800,
@@ -275,9 +282,7 @@ class _QuizpageState extends State<Quizpage> {
                         ),
                       );
                     }),
-                    SizedBox(
-                      height: 80,
-                    ),
+                    SizedBox(height: 80),
                     Padding(
                       padding: EdgeInsets.all(10),
                       child: Row(
@@ -307,57 +312,17 @@ class _QuizpageState extends State<Quizpage> {
                                 )
                               : SizedBox(),
                           GestureDetector(
-                            onTap: isAnswerSelected
-                                ? () {
-                                      
-                                    if (currentquestionIndex <
-                                        widget.quizset.questions.length - 1) {
-                                      nextQuestion();
-                                    } else {
-                                      int totalCorrect = 0;
-                                      for (int i = 0;
-                                          i < widget.quizset.questions.length;
-                                          i++) {
-                                        if (selectedIndexanswer[i] ==
-                                            widget.quizset.questions[i]
-                                                .selectedIndex) {
-                                          totalCorrect++;
-                                        }
-                                      }
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => ResultPage(
-                                            totalAttempt: widget
-                                                .quizset.questions.length,
-                                            totalQuestion: widget
-                                                .quizset.questions.length,
-                                            correctAnswer: totalCorrect,
-                                            score: (totalCorrect /
-                                                    widget.quizset.questions
-                                                        .length) *
-                                                100,
-                                            quizSet:
-                                                widget.quizset,
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                  }
-                                : null, 
+                            onTap: isAnswerSelected ? onSubmit : null,
                             child: Container(
                               width: 100,
                               padding: EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                color: isAnswerSelected
-                                    ? Colors.blue
-                                    : Colors.grey, 
+                                color: isAnswerSelected ? Colors.blue : Colors.grey,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Center(
                                 child: Text(
-                                  currentquestionIndex ==
-                                          widget.quizset.questions.length - 1
+                                  currentquestionIndex == widget.quizset.questions.length - 1
                                       ? "Submit"
                                       : "Next",
                                   style: TextStyle(
