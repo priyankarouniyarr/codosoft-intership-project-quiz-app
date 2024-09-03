@@ -6,6 +6,7 @@ import 'package:quiz_app/screen/resultpage.dart';
 
 class Quizpage extends StatefulWidget {
   final QuizSet quizset;
+  // It accepts a QuizSet object, which contains all the quiz data.
 
   const Quizpage({super.key, required this.quizset});
 
@@ -14,17 +15,20 @@ class Quizpage extends StatefulWidget {
 }
 
 class _QuizpageState extends State<Quizpage> {
-  int seconds = 60;
-  Timer? timer;
-  int currentquestionIndex = 0;
-  List<int?> selectedIndexanswer = [];
+  int seconds = 60;//seconds: Keeps track of the remaining time for the quiz.
+
+  Timer? timer;//timer: A Timer object that counts down the time.
+  int currentquestionIndex = 0;//currentquestionIndex: The index of the currently displayed question.
+  List<int?> selectedIndexanswer = [];//selectedIndexanswer: A list that stores the user's selected answer for each question.
 
   @override
   void initState() {
     super.initState();
     startTimer();
+    // initState: Initializes the state when the widget is first created. It starts the timer and initializes the selectedIndexanswer list.
     selectedIndexanswer =
         List<int?>.filled(widget.quizset.questions.length, null);
+        //he code List<int?>.filled(widget.quizset.questions.length, null); creates a list of a certain size where every item is set to null.
   }
 
   @override
@@ -45,6 +49,7 @@ class _QuizpageState extends State<Quizpage> {
       });
     });
   }
+  //showTimeUpScreen: Displays an alert dialog when the time is up, informing the user and offering a restart button that navigates back to the homepage.
 
   void showTimeUpScreen() {
     showDialog(
@@ -104,9 +109,16 @@ class _QuizpageState extends State<Quizpage> {
   void onSubmit() {
     if (currentquestionIndex < widget.quizset.questions.length - 1) {
       nextQuestion();
-    } else {
+    } 
+    
+    //This checks if the current question index (currentquestionIndex) is less than the total number of questions in the quiz minus one.
+//If true, it means there are more questions left to answer.
+    else {
+      //If the if condition is false, meaning the user has reached the last question, the else block is executed.
       int totalCorrect = 0;
+      //This declares an integer variable totalCorrect and initializes it to 0. This will keep track of the number of correct answers.
       for (int i = 0; i < widget.quizset.questions.length; i++) {
+        //This loop goes through each question in the quiz.
         if (selectedIndexanswer[i] ==
             widget.quizset.questions[i].selectedIndex) {
           totalCorrect++;
@@ -131,12 +143,13 @@ class _QuizpageState extends State<Quizpage> {
   @override
   Widget build(BuildContext context) {
     final Question currentQuestion =
-        widget.quizset.questions[currentquestionIndex];
+        widget.quizset.questions[currentquestionIndex];//This line extracts the current question based on the currentquestionIndex from the list of questions in widget.quizset.
     bool isAnswerSelected = selectedIndexanswer[currentquestionIndex] != null;
+    //Checks if an answer has been selected for the current question by verifying if selectedIndexanswer[currentquestionIndex] is not null.
     bool isQuestionEditable =
         currentquestionIndex == selectedIndexanswer.length - 1 ||
             selectedIndexanswer[currentquestionIndex] == null;
-
+//
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -245,7 +258,7 @@ class _QuizpageState extends State<Quizpage> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 10),//This block creates a list of answer options for the current question. It uses map to iterate over each option and creates a GestureDetector for each.
                     ...currentQuestion.options.asMap().entries.map((entry) {
                       final index = entry.key;
                       final option = entry.value;

@@ -3,7 +3,7 @@ import 'package:quiz_app/data/data.dart';
 import 'package:quiz_app/screen/categories.dart';
 
 class Homepage extends StatelessWidget {
-  Data data = Data();
+  Data data = Data();//object created
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +63,9 @@ class Homepage extends StatelessWidget {
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 20,
                 ),
+                //data.categories is assumed to be a list of categories.
+// index is used to get the category at the specific position in the list.
+// final category stores the category for use within the item builder.
                 itemBuilder: (context, index) {
                   final category = data.categories[index];
                   return GestureDetector(
@@ -85,14 +88,14 @@ class Homepage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            category.image,
+                            category.image,//categories from
                             height: 100,
                             width: MediaQuery.of(context).size.width,
                           ),
                           SizedBox(height: 5),
                           Flexible(
                             child: Text(
-                              category.name,
+                              category.name,//categoreies from
                               style: TextStyle(
                                 fontSize: 25,
                                 color: Colors.black,
