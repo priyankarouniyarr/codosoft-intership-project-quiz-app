@@ -1,5 +1,5 @@
 # Quiz App 
-Quiz App is a Flutter-based project designed for an engaging quiz experience. Key features include:
+Quiz App is a Flutter-based project designed for an engaging quiz experiences. Key features include:
 
 # Interactive Interface:
 Navigate questions easily, select answers, and submit responses.
