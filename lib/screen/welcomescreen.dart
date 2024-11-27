@@ -106,6 +106,7 @@ class _WelcomescreenState extends State<Welcomescreen>
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.5,
                           color: Colors.white,
+
                           shadows: [
                             Shadow(
                               blurRadius: 8.0,
@@ -114,8 +115,9 @@ class _WelcomescreenState extends State<Welcomescreen>
                             ),
                           ],
                         ),
+                        textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 10.0),
+                      SizedBox(height: 30.0),
                       Text(
                         "Challenge yourself, learn something new, and have fun!",
                         style: TextStyle(
