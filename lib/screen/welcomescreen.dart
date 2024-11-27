@@ -82,7 +82,7 @@ class _WelcomescreenState extends State<Welcomescreen>
                   height: MediaQuery.of(context).size.height / 2.5,
                   padding: EdgeInsets.symmetric(vertical: 40, horizontal: 30),
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(180, 43, 17, 78),
+                    color: Color.fromARGB(190, 43, 17, 78),
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(30),
                       topLeft: Radius.circular(30),
@@ -121,7 +121,7 @@ class _WelcomescreenState extends State<Welcomescreen>
                       Text(
                         "Challenge yourself, learn something new, and have fun!",
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.w400,
                           letterSpacing: 1,
                           color: Colors.white70,
